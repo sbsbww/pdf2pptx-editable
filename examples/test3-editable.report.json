@@ -1,0 +1,22 @@
+{
+  "slides": 10,
+  "editableTextObjects": 121,
+  "nativeShapeObjects": 55,
+  "nativeChartObjects": 2,
+  "independentImageObjects": 24,
+  "reconstruction": {
+    "text": "Recreated as editable PowerPoint text boxes.",
+    "charts": "Slide 8 charts are native editable PowerPoint charts.",
+    "linesAndCards": "Recreated as native PowerPoint shapes.",
+    "illustrations": "Complex panda/city/icon artwork is preserved as independently movable cropped image objects."
+  },
+  "limitations": [
+    "The source PDF contains one raster image per page and no text/vector layer.",
+    "Complex line-art illustrations cannot be losslessly vectorized and remain image objects.",
+    "Font metrics may vary if Microsoft YaHei is unavailable on the viewing system."
+  ],
+  "input": "test3.pdf",
+  "sha256": "68b16a5e321f1dcd6f866969c40e52e63cdc65d7b4891926763cad027bad7048",
+  "output": "test3-editable.pptx",
+  "mode": "curated-test3"
+}

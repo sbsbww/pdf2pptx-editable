@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: pdf2pptx-editable
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /api/health
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+

@@ -1,0 +1,19 @@
+{
+  "name": "pdf2pptx-editable",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "PDF page reconstruction into editable PPTX objects",
+  "scripts": {
+    "test": "node --check app/build_pptx.mjs",
+    "build:sample": "python scripts/convert.py examples/test3.pdf examples/test3-editable.pptx",
+    "start": "python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
+  },
+  "dependencies": {
+    "pptxgenjs": "4.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

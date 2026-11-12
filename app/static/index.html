@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PDF 转可编辑 PPTX</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand-mark" aria-hidden="true">P</div>
+        <div>
+          <strong>PDF2PPTX Editable</strong>
+          <span>结构化重建服务</span>
+        </div>
+        <div id="health" class="health">检查服务</div>
+      </header>
+
+      <section class="workspace">
+        <div class="intro">
+          <p class="kicker">本地文档处理</p>
+          <h1>把 PDF 页面重建为可编辑的 PowerPoint</h1>
+          <p>文字、图形和图表优先转换为原生对象；复杂视觉内容保留为可独立移动的局部图片。</p>
+        </div>
+
+        <form id="upload-form" class="dropzone">
+          <input id="pdf-file" name="file" type="file" accept="application/pdf,.pdf" required />
+          <label for="pdf-file">
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <strong id="file-label">选择 PDF 文件</strong>
+            <small>单个文件，转换完成后自动下载 PPTX</small>
+          </label>
+          <div class="actions">
+            <button id="convert-button" type="submit">开始转换</button>
+            <span id="status" role="status">等待文件</span>
+          </div>
+          <div id="progress" class="progress" aria-hidden="true"><i></i></div>
+        </form>
+      </section>
+
+      <section class="pipeline" aria-label="转换路径">
+        <div><b>01</b><span>解析页面</span></div>
+        <div><b>02</b><span>识别结构</span></div>
+        <div><b>03</b><span>重建对象</span></div>
+        <div><b>04</b><span>校验 PPTX</span></div>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
+

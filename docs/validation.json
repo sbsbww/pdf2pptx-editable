@@ -1,0 +1,91 @@
+{
+  "file": "C:\\Users\\崔醒\\Documents\\Codex\\2026-11-12\\test\\outputs\\pdf2pptx-editable\\examples\\test3-editable.pptx",
+  "bytes": 7998946,
+  "slides": 10,
+  "charts": 2,
+  "mediaFiles": 24,
+  "allSlidesStructured": true,
+  "perSlide": [
+    {
+      "slide": 1,
+      "shapeObjects": 3,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 2,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 2,
+      "shapeObjects": 12,
+      "imageObjects": 4,
+      "graphicFrames": 0,
+      "textRuns": 10,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 3,
+      "shapeObjects": 26,
+      "imageObjects": 1,
+      "graphicFrames": 0,
+      "textRuns": 18,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 4,
+      "shapeObjects": 25,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 22,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 5,
+      "shapeObjects": 21,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 20,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 6,
+      "shapeObjects": 24,
+      "imageObjects": 5,
+      "graphicFrames": 0,
+      "textRuns": 18,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 7,
+      "shapeObjects": 19,
+      "imageObjects": 5,
+      "graphicFrames": 0,
+      "textRuns": 16,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 8,
+      "shapeObjects": 18,
+      "imageObjects": 1,
+      "graphicFrames": 2,
+      "textRuns": 15,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 9,
+      "shapeObjects": 22,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 20,
+      "notSinglePageImage": true
+    },
+    {
+      "slide": 10,
+      "shapeObjects": 6,
+      "imageObjects": 0,
+      "graphicFrames": 0,
+      "textRuns": 6,
+      "notSinglePageImage": true
+    }
+  ],
+  "ok": true
+}
