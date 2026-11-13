@@ -4,6 +4,7 @@ import shutil
 import tempfile
 import uuid
 from pathlib import Path
+import json
 
 from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
@@ -42,15 +43,24 @@ async def convert(background_tasks: BackgroundTasks, file: UploadFile = File(...
         while chunk := await file.read(1024 * 1024):
             handle.write(chunk)
     try:
-        convert_pdf(input_path, output_path, job_dir / "work")
+        result = convert_pdf(input_path, output_path, job_dir / "work")
     except ConversionError as exc:
         _cleanup(job_dir)
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     background_tasks.add_task(_cleanup, job_dir)
+    report = json.loads(result.report_path.read_text(encoding="utf-8"))
+    headers = {
+        "X-Conversion-Mode": result.mode,
+        "X-Editable-Text-Objects": str(report.get("editableTextObjects", 0)),
+        "X-Native-Shape-Objects": str(report.get("nativeShapeObjects", 0)),
+        "X-Native-Table-Objects": str(report.get("nativeTableObjects", 0)),
+        "X-Fallback-Image-Objects": str(report.get("independentImageObjects", report.get("imageObjects", 0))),
+    }
     return FileResponse(
         output_path,
         media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
         filename=output_name,
+        headers=headers,
         background=background_tasks,
     )
 

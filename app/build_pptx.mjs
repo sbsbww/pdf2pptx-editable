@@ -20,7 +20,7 @@ pptx.layout = "SOURCE_PORTRAIT";
 pptx.author = "pdf2pptx-editable";
 pptx.company = "OpenAI Codex delivery";
 pptx.subject = "Editable reconstruction from PDF page images";
-pptx.title = "测试3 - 可编辑重建版";
+pptx.title = manifest.metadata?.title || "PDF - 可编辑重建版";
 pptx.lang = "zh-CN";
 pptx.theme = {
   headFontFace: "Microsoft YaHei",
@@ -127,6 +127,39 @@ function addChart(slide, item) {
   slide.addChart(type, data, options);
 }
 
+function addTable(slide, item) {
+  const rows = item.rows.map((row, rowIndex) =>
+    row.map((value, colIndex) => ({
+      text: String(value),
+      options: {
+        bold: rowIndex === 0 || colIndex === 0,
+        color: rowIndex === 0 ? (item.headerColor || "FFFFFF") : (item.color || "334155"),
+        fill: rowIndex === 0
+          ? (item.headerFill || "0874CB")
+          : colIndex === 0
+            ? (item.firstColFill || "EAF3FB")
+            : (item.bodyFill || "F8FBFE"),
+        align: "center",
+        valign: "mid",
+        margin: 0.03,
+        fontFace: item.fontFace || "Microsoft YaHei",
+        fontSize: item.fontSize || 9,
+      },
+    })),
+  );
+  slide.addTable(rows, {
+    x: item.x,
+    y: item.y,
+    w: item.w,
+    h: item.h,
+    colW: item.colW,
+    rowH: item.rowH,
+    border: { type: "solid", color: item.borderColor || "CBD5E1", pt: 0.6 },
+    margin: 0.03,
+    autoFit: false,
+  });
+}
+
 for (const slideSpec of manifest.slides) {
   const slide = pptx.addSlide();
   slide.background = { color: slideSpec.background || "FFFFFF" };
@@ -148,6 +181,8 @@ for (const slideSpec of manifest.slides) {
       });
     } else if (item.type === "chart") {
       addChart(slide, item);
+    } else if (item.type === "table") {
+      addTable(slide, item);
     } else {
       throw new Error(`Unsupported item type: ${item.type}`);
     }

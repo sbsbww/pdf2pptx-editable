@@ -47,6 +47,10 @@ form.addEventListener("submit", async (event) => {
       throw new Error(payload.detail || "转换失败");
     }
     const blob = await response.blob();
+    const mode = response.headers.get("x-conversion-mode") || "unknown";
+    const textObjects = response.headers.get("x-editable-text-objects") || "0";
+    const shapeObjects = response.headers.get("x-native-shape-objects") || "0";
+    const tableObjects = response.headers.get("x-native-table-objects") || "0";
     const disposition = response.headers.get("content-disposition") || "";
     const match = disposition.match(/filename\*?=(?:UTF-8''|\")?([^\";]+)/i);
     const filename = match ? decodeURIComponent(match[1].replace(/\"$/, "")) : "editable.pptx";
@@ -56,7 +60,8 @@ form.addEventListener("submit", async (event) => {
     anchor.download = filename;
     anchor.click();
     URL.revokeObjectURL(url);
-    status.textContent = "转换完成，PPTX 已下载";
+    const modeLabel = mode.startsWith("curated") ? "高保真重建" : mode === "text-layer" ? "文字层重建" : "视觉保真降级";
+    status.textContent = `转换完成：${modeLabel}，文本 ${textObjects}，形状 ${shapeObjects}，表格 ${tableObjects}`;
   } catch (error) {
     status.textContent = error.message;
   } finally {

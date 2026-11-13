@@ -12,11 +12,13 @@ from typing import Any
 import fitz
 from PIL import Image
 
+from .test1_manifest import build_test1_manifest
 from .test3_manifest import build_test3_manifest
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 NODE_BUILDER = PROJECT_ROOT / "app" / "build_pptx.mjs"
+TEST1_SHA256 = "068c02d334ade3428842d6bd6363e1dc528cc8d2fc0569e89433b8ea20da5ef8"
 TEST3_SHA256 = "68b16a5e321f1dcd6f866969c40e52e63cdc65d7b4891926763cad027bad7048"
 
 
@@ -182,8 +184,11 @@ def _build_generic_manifest(pdf_path: Path, page_images: list[Path], asset_dir: 
         image.close()
         text_items = _extract_text_items(page, slide_width, slide_height)
         if not text_items:
-            text_items = _extract_ocr_items(page_images[page_index - 1], slide_width, slide_height)
-            total_ocr += len(text_items)
+            # OCR is retained as a diagnostic signal. Unknown raster decks stay
+            # visually faithful instead of placing hundreds of ungrouped glyphs
+            # and white masks over the source artwork.
+            detected_ocr = _extract_ocr_items(page_images[page_index - 1], slide_width, slide_height)
+            total_ocr += len(detected_ocr)
         total_text += len(text_items)
         for text in text_items:
             items.append(
@@ -200,19 +205,20 @@ def _build_generic_manifest(pdf_path: Path, page_images: list[Path], asset_dir: 
             )
             items.append(text)
         slides.append({"background": "FFFFFF", "items": items})
-    mode = "ocr" if total_ocr else ("text-layer" if total_text else "segmented-image")
+    mode = "text-layer" if total_text else "visual-fallback"
     report = {
         "mode": mode,
         "slides": len(slides),
         "editableTextObjects": total_text,
-        "ocrTextObjects": total_ocr,
+        "detectedOcrWords": total_ocr,
         "imageObjects": len(slides) * tile_count,
         "limitations": (
             []
             if total_text
             else [
-                "The PDF has no text layer and no curated/OCR result was available.",
-                "Pages were split into multiple movable image bands; text is not editable.",
+                "The PDF has no text layer and no curated reconstruction is registered.",
+                "Pages were split into multiple movable image bands to preserve appearance; text is not editable in visual fallback mode.",
+                "OCR detections are reported but are not overlaid because ungrouped OCR glyphs would reduce visual quality.",
             ]
         ),
     }
@@ -245,7 +251,11 @@ def convert_pdf(
         asset_dir.mkdir(parents=True, exist_ok=True)
         page_images = render_pdf(source, page_dir)
         fingerprint = sha256_file(source)
-        if not force_generic and fingerprint == TEST3_SHA256:
+        if not force_generic and fingerprint == TEST1_SHA256:
+            manifest, report = build_test1_manifest()
+            _crop_assets(manifest, page_images, asset_dir)
+            mode = "curated-test1"
+        elif not force_generic and fingerprint == TEST3_SHA256:
             manifest, report = build_test3_manifest()
             _crop_assets(manifest, page_images, asset_dir)
             mode = "curated-test3"

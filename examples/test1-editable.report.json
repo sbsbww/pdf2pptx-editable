@@ -1,0 +1,23 @@
+{
+  "slides": 10,
+  "editableTextObjects": 138,
+  "nativeShapeObjects": 80,
+  "nativeTableObjects": 1,
+  "nativeChartObjects": 0,
+  "independentImageObjects": 23,
+  "reconstruction": {
+    "text": "Titles, subtitles, contents, descriptions, partnership cards, contact information, headers and footers are editable text boxes.",
+    "tables": "The product specification matrix on slide 8 is a native editable PowerPoint table.",
+    "shapes": "Lines, bullets, badges and partnership cards are native PowerPoint shapes.",
+    "images": "Photos, portraits, robots, diagrams and logo walls are preserved as independently movable region images."
+  },
+  "limitations": [
+    "The source PDF contains only one raster image per page and has no recoverable original object structure.",
+    "Complex process diagrams, portraits and brand logos remain image regions to preserve visual fidelity.",
+    "The source itself mixes company identities and page numbering; the reconstruction preserves the visible content."
+  ],
+  "input": "test1.pdf",
+  "sha256": "068c02d334ade3428842d6bd6363e1dc528cc8d2fc0569e89433b8ea20da5ef8",
+  "output": "test1-editable.pptx",
+  "mode": "curated-test1"
+}

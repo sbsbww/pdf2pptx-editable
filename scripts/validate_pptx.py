@@ -28,6 +28,7 @@ def validate(path: Path) -> dict[str, object]:
             images = len(re.findall(r"<p:pic>", xml))
             groups = len(re.findall(r"<p:graphicFrame>", xml))
             text_runs = len(re.findall(r"<a:t(?:\s[^>]*)?>", xml))
+            tables = len(re.findall(r"<a:tbl>", xml))
             slides.append(
                 {
                     "slide": len(slides) + 1,
@@ -35,7 +36,9 @@ def validate(path: Path) -> dict[str, object]:
                     "imageObjects": images,
                     "graphicFrames": groups,
                     "textRuns": text_runs,
+                    "tables": tables,
                     "notSinglePageImage": not (images == 1 and text_objects == 0 and groups == 0),
+                    "objectCountReasonable": text_runs <= 120,
                 }
             )
         chart_parts = sorted(name for name in names if re.fullmatch(r"ppt/charts/chart\d+\.xml", name))
@@ -47,6 +50,7 @@ def validate(path: Path) -> dict[str, object]:
             "charts": len(chart_parts),
             "mediaFiles": len(media_parts),
             "allSlidesStructured": all(item["notSinglePageImage"] for item in slides),
+            "objectDensityReasonable": all(item["objectCountReasonable"] for item in slides),
             "perSlide": slides,
         }
 

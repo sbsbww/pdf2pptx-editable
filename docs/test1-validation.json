@@ -1,0 +1,112 @@
+{
+  "file": "C:\\Users\\崔醒\\Documents\\Codex\\2026-11-12\\test\\outputs\\pdf2pptx-editable\\examples\\test1-editable.pptx",
+  "bytes": 10272533,
+  "slides": 10,
+  "charts": 0,
+  "mediaFiles": 23,
+  "allSlidesStructured": true,
+  "objectDensityReasonable": true,
+  "perSlide": [
+    {
+      "slide": 1,
+      "shapeObjects": 7,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 7,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 2,
+      "shapeObjects": 12,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 12,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 3,
+      "shapeObjects": 88,
+      "imageObjects": 1,
+      "graphicFrames": 0,
+      "textRuns": 47,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 4,
+      "shapeObjects": 11,
+      "imageObjects": 3,
+      "graphicFrames": 0,
+      "textRuns": 8,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 5,
+      "shapeObjects": 19,
+      "imageObjects": 3,
+      "graphicFrames": 0,
+      "textRuns": 16,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 6,
+      "shapeObjects": 11,
+      "imageObjects": 3,
+      "graphicFrames": 0,
+      "textRuns": 8,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 7,
+      "shapeObjects": 11,
+      "imageObjects": 3,
+      "graphicFrames": 0,
+      "textRuns": 8,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 8,
+      "shapeObjects": 10,
+      "imageObjects": 2,
+      "graphicFrames": 1,
+      "textRuns": 62,
+      "tables": 1,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 9,
+      "shapeObjects": 35,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 22,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    },
+    {
+      "slide": 10,
+      "shapeObjects": 14,
+      "imageObjects": 2,
+      "graphicFrames": 0,
+      "textRuns": 18,
+      "tables": 0,
+      "notSinglePageImage": true,
+      "objectCountReasonable": true
+    }
+  ],
+  "ok": true
+}
